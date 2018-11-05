@@ -32,7 +32,7 @@ BBB pin P9_7 (5V)   -> MPU VCC
 
 
 **Compilation:**
-On RPi, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board 
+On BBB, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board 
 (-DMPU6050 for MPU6050, -DMPU6500 for MPU6500, -DMPU9150 for MPU9150, -DMPU9250 for MPU9250), issue make
 
 
