@@ -17,10 +17,10 @@ all: $(PROG).o
 $(PROG).o: MotionSensor/libMotionSensor.a libs/libI2Cdev.a
 
 MotionSensor/libMotionSensor.a:
-	$(MAKE) -C MotionSensor/ 
+	$(MAKE) -C MotionSensor/ CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
 
 libs/libI2Cdev.a:
-	$(MAKE) -C libs/I2Cdev
+	$(MAKE) -C libs/I2Cdev CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
 
 clean:
 	cd MotionSensor && $(MAKE) clean
