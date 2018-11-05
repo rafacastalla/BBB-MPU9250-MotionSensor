@@ -55,6 +55,7 @@ THE SOFTWARE.
 
         int i2c_init();
         int i2c_close();
+        void reset();
 
         int8_t readBitW(uint8_t devAddr, uint8_t regAddr, uint8_t bitNum, uint16_t *data);
         int8_t readBits(uint8_t devAddr, uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data);
