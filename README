@@ -18,18 +18,22 @@ and calculates Yaw, Pitch, Roll in degrees which in turn is displayed as an outp
 
 **Wiring**
 I2C uses only2 wires for data transmission: SCL and SDA
-RPi pin 3 -> MPU SDA
-RPi pin 5 -> MPU SCL
+BBB pin P9_19 (I2C2_SCL) -> MPU SCL
+BBB pin P9_20 (I2C2_SDA) -> MPU SDA
 
 
-You will also need to provide power (3.3V) to your MPU. You can use external power or hook it up with RPi.
+You will also need to provide power to your MPU. You can use external power or hook it up with BBB.
 For example:
-RPi pin 1 (3.3V) -> MPU VCC
-RPi pin 6 (Ground) -> MPU GND
+BBB pin P9_1 (GND)  -> MPU GND 
+BBB pin P9_3 (3.3V) -> MPU VCC 
+or
+BBB pin P9_7 (5V)   -> MPU VCC 
+(The power depends on your sensor VCC voltage and check SDA and SCL volatge output)
 
 
 **Compilation:**
-On RPi, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board (-DMPU6050 for MPU6050, -DMPU9150 for MPU9150), issue make
+On RPi, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board 
+(-DMPU6050 for MPU6050, -DMPU9150 for MPU9150), issue make
 
 
 **Cross compiling:**
