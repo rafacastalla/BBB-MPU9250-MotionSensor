@@ -1,7 +1,9 @@
+PORTING IN PROGRESS
+
 MotionSensorExample
 ===================
 
-MPU6050/MPU6500/MPU9150/MPU9250 over I2c for RaspberryPi using official Invensense libraries (v5.1):
+MPU6050/MPU6500/MPU9150/MPU9250 over I2c for BeagleBone Black using official Invensense libraries (v5.1):
 http://www.invensense.com/developers/index.php?_r=downloads
 
 
@@ -65,9 +67,13 @@ yaw = -0.216            pitch = 1.506           roll = -1.587   t = 20.23       
 ....
 
 **Additional info:**
-Current setup is to run at 40Hz, this can be adjusted in the ms_open function, however note that your code will need to read the values with respective speed or quicker. Otherwise the MPU fifo buffer will overflown.
+Current setup is to run at 40Hz, this can be adjusted in the ms_open function, 
+however note that your code will need to read the values with respective speed or quicker. 
+Otherwise the MPU fifo buffer will overflown.
 
-To read MPU see ms_update - it calls 'dmp read fifo' in a while loop. This means that if fifo is empty this will stall until a packet is available.
+To read MPU see ms_update - it calls 'dmp read fifo' in a while loop. 
+This means that if fifo is empty this will stall until a packet is available.
 
 -------------------------
-Gregory Dymarek
+Created by Gregory Dymarek for Raspberry Pi
+Ported by Rafael Carbonell for BeagleBone Black
