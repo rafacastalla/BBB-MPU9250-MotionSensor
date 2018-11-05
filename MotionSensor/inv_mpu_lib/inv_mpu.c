@@ -641,6 +641,14 @@ uint8_t mpu_read_reg(uint8_t reg, uint8_t *data)
 }
 
 /**
+/ @brief Close hardware connection
+*/
+void mpu_close()
+{
+	i2c_close();
+}
+
+/**
  *  @brief      Initialize hardware.
  *  Initial configuration:\n
  *  Gyro FSR: +/- 2000DPS\n
@@ -656,6 +664,8 @@ uint8_t mpu_read_reg(uint8_t reg, uint8_t *data)
 uint8_t mpu_init(struct int_param_s *int_param)
 {
 	uint8_t data[6], rev;
+	
+	i2c_init();
 
 	/* Reset device. */
 	data[0] = BIT_RESET;
