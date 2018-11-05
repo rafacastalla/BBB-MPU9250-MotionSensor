@@ -2,8 +2,6 @@ CXX=g++
 CXXFLAGS= -Wall -g -O2
 CXX_OPTS= -Wall -g -O2
 
-INSTALL=install
-
 PROG=mstest
 
 %.o: %.c                                                                         
@@ -23,9 +21,6 @@ MotionSensor/libMotionSensor.a:
 
 libs/libI2Cdev.a:
 	$(MAKE) -C libs/I2Cdev
-
-install1:
-	$(INSTALL) -m 755 $(PROG) $(DESTDIR)/usr/local/bin/
 
 clean:
 	cd MotionSensor && $(MAKE) clean
