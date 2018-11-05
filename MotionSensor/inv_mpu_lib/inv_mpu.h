@@ -58,7 +58,7 @@ struct int_param_s
 
 /* Set up APIs */
 uint8_t mpu_init(struct int_param_s *int_param);
-void    mpu_close(void);
+uint8_t mpu_close(void);
 uint8_t mpu_set_bypass(uint8_t bypass_on);
 
 /* Configuration APIs */
