@@ -7,7 +7,7 @@
 // 05/11/2018 by Rafael Carbonell <rafapenya96@gmail.com>
 //
 // Changelog:
-//     2018-11-05 - Substitute "/dev/i2c-2" hardcoded in I2Cdev.c by define in I2Cdev.h
+//     2018-11-05 - Substitute "/dev/i2c-1" hardcoded in I2Cdev.c by define in I2Cdev.h
 //     2012-06-09 - fix major issue with reading > 32 bytes at a time with Arduino Wire
 //                - add compiler warnings when using outdated or IDE or limited I2Cdev implementation
 //     2011-11-01 - fix write*Bits mask calculation (thanks sasquatch @ Arduino forums)
