@@ -37,7 +37,8 @@ On BBB, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board
 
 
 **Cross compiling:**
-Edit all Makefiles in all directories and adjust CXX. Issue make
+~~Edit all Makefiles in all directories and adjust CXX. Issue make~~
+Edit only the main Makefile and adjust CXX. Issue make
 
 
 **Running:**
