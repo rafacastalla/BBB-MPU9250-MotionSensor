@@ -5,7 +5,7 @@ MotionSensorExample
 
 MPU6050/MPU6500/MPU9150/MPU9250 over I2c for BeagleBone Black using official Invensense libraries (v5.1)
 
-This is a sample program for testing your MPU Motion Sensor with Rasperry Pi.
+This is a sample program for testing your MPU Motion Sensor with BeagleBone Black.
 It does all the initialization and gathers:
 - gyro
 - accel
@@ -33,7 +33,7 @@ BBB pin P9_7 (5V)   -> MPU VCC
 
 **Compilation:**
 On RPi, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board 
-(-DMPU6050 for MPU6050, -DMPU9150 for MPU9150), issue make
+(-DMPU6050 for MPU6050, -DMPU6500 for MPU6500, -DMPU9150 for MPU9150, -DMPU9250 for MPU9250), issue make
 
 
 **Cross compiling:**
@@ -41,10 +41,11 @@ Edit all Makefiles in all directories and adjust CXX. Issue make
 
 
 **Running:**
-  make sure you have i2c_dev module loaded (modprobe i2c_dev)
+
+  HOW TO LOAD I2C !!! CHANGE !!! FOR OVERLAY AT UENV.TXT
   run mstest
   
-*Output:*
+*Output Example 1:*
 Initializing I2C devices...
 Testing device connections...
 MPU6050 connection successful
