@@ -3,9 +3,7 @@ PORTING IN PROGRESS
 MotionSensorExample
 ===================
 
-MPU6050/MPU6500/MPU9150/MPU9250 over I2c for BeagleBone Black using official Invensense libraries (v5.1):
-http://www.invensense.com/developers/index.php?_r=downloads
-
+MPU6050/MPU6500/MPU9150/MPU9250 over I2c for BeagleBone Black using official Invensense libraries (v5.1)
 
 This is a sample program for testing your MPU Motion Sensor with Rasperry Pi.
 It does all the initialization and gathers:
