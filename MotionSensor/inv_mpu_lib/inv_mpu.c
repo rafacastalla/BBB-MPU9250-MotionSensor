@@ -641,11 +641,13 @@ uint8_t mpu_read_reg(uint8_t reg, uint8_t *data)
 }
 
 /**
-/ @brief Close hardware connection
+*  @brief Close hardware connection
+*   @return     0 if successful.
 */
-void mpu_close()
+uint8_t mpu_close(void)
 {
-	i2c_close();
+	if(i2c_close!=0) return 1;
+	return 0;
 }
 
 /**
@@ -665,7 +667,7 @@ uint8_t mpu_init(struct int_param_s *int_param)
 {
 	uint8_t data[6], rev;
 	
-	i2c_init();
+	if(i2c_init()!=0) return 1;
 
 	/* Reset device. */
 	data[0] = BIT_RESET;
