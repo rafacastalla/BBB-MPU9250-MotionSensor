@@ -1,6 +1,10 @@
 // I2Cdev library collection - Main I2C device class header file
 // Abstracts bit and byte I2C R/W functions into a convenient class
-// 05/11/2018 by Jeff Rowberg <jeff@rowberg.net>
+// 06/09/2012 by Jeff Rowberg <jeff@rowberg.net>
+//
+// Updated:
+// 14/04/2014 by Gregory Dymare <gregd72002@gmail.com> - removed C++ dependencies
+// 05/11/2018 by Rafael Carbonell <rafapenya96@gmail.com>
 //
 // Changelog:
 //     2018-11-05 - Substitute "/dev/i2c-2" hardcoded in I2Cdev.c by define in I2Cdev.h
