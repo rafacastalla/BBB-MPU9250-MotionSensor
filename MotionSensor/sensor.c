@@ -41,7 +41,7 @@ float gyro[3];
 float accel[3];
 float compass[3];
 
-uint8_t rate = 40;
+uint8_t rate = 200;
 
 int ms_open() {
 	dmpReady=1;
@@ -167,6 +167,7 @@ int ms_update() {
 }
 
 int ms_close() {
+	mpu_close();
 	return 0;
 }
 
