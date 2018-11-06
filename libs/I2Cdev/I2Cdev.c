@@ -64,8 +64,25 @@ THE SOFTWARE.
  * Set this to 0 to disable timeout detection.
  */
 uint16_t readTimeout = 0;
+int fd = -1;
 /** Default constructor.
  */
+
+
+int i2c_init() {
+    fd = open(I2C, O_RDWR);
+    if (fd < 0) {
+        fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
+        return(-1);
+    }
+    return 0;
+}
+
+int i2c_close() {
+    close(fd);
+    return 0;
+}
+
 
 /** Read a single bit from an 8-bit device register.
  * @param devAddr I2C slave device address
@@ -183,33 +200,28 @@ int8_t readBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *data
 #ifdef DEBUG
     printf("read %#x %#x %u\n",devAddr,regAddr,length);
 #endif
-    int fd = open(I2C, O_RDWR);
-
-    if (fd < 0) {
-        fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
-        return(-1);
-    }
+  
     if (ioctl(fd, I2C_SLAVE, devAddr) < 0) {
         fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
-        close(fd);
+        //close(fd);
         return(-1);
     }
     if (write(fd, &regAddr, 1) != 1) {
         fprintf(stderr, "Failed to write reg: %s\n", strerror(errno));
-        close(fd);
+        //close(fd);
         return(-1);
     }
     count = read(fd, data, length);
     if (count < 0) {
         fprintf(stderr, "Failed to read device(%d): %s\n", count, strerror(errno));
-        close(fd);
+        //close(fd);
         return(-1);
     } else if (count != length) {
         fprintf(stderr, "Short read  from device, expected %d, got %d\n", length, count);
-        close(fd);
+        //close(fd);
         return(-1);
     }
-    close(fd);
+    //close(fd);
 
     return count;
 }
@@ -348,7 +360,7 @@ int writeWord(uint8_t devAddr, uint8_t regAddr, uint16_t data) {
 int writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t* data) {
     int8_t count = 0;
     uint8_t buf[128];
-    int fd;
+    //int fd;
 
 #ifdef DEBUG
     printf("write %#x %#x\n",devAddr,regAddr);
@@ -357,15 +369,15 @@ int writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t* data) 
         fprintf(stderr, "Byte write count (%d) > 127\n", length);
         return -1;
     }
-
+/*
     fd = open(I2C, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
         return -1;
-    }
+    }*/
     if (ioctl(fd, I2C_SLAVE, devAddr) < 0) {
         fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
-        close(fd);
+        //close(fd);
         return -1;
     }
     buf[0] = regAddr;
@@ -373,14 +385,14 @@ int writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t* data) 
     count = write(fd, buf, length+1);
     if (count < 0) {
         fprintf(stderr, "Failed to write device(%d): %s\n", count, strerror(errno));
-        close(fd);
+        //close(fd);
         return -1;
     } else if (count != length+1) {
         fprintf(stderr, "Short write to device, expected %d, got %d\n", length+1, count);
-        close(fd);
+        //close(fd);
         return -1;
     }
-    close(fd);
+    //close(fd);
 
     return 0;
 }
@@ -395,7 +407,7 @@ int writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t* data) 
 int writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t* data) {
     int8_t count = 0;
     uint8_t buf[128];
-    int i, fd;
+    int i; // fd;
 
     // Should do potential byteswap and call writeBytes() really, but that
     // messes with the callers buffer
@@ -404,15 +416,15 @@ int writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t* data)
         fprintf(stderr, "Word write count (%d) > 63\n", length);
         return -1;
     }
-
+/*
     fd = open(I2C, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "Failed to open device: %s\n", strerror(errno));
         return -1;
-    }
+    }*/
     if (ioctl(fd, I2C_SLAVE, devAddr) < 0) {
         fprintf(stderr, "Failed to select device: %s\n", strerror(errno));
-        close(fd);
+       // close(fd);
         return -1;
     }
     buf[0] = regAddr;
@@ -423,14 +435,14 @@ int writeWords(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint16_t* data)
     count = write(fd, buf, length*2+1);
     if (count < 0) {
         fprintf(stderr, "Failed to write device(%d): %s\n", count, strerror(errno));
-        close(fd);
+       // close(fd);
         return -1;
     } else if (count != length*2+1) {
         fprintf(stderr, "Short write to device, expected %d, got %d\n", length+1, count);
-        close(fd);
+        //close(fd);
         return -1;
     }
-    close(fd);
+    //close(fd);
     return 0;
 }
 
