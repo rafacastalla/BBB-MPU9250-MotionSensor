@@ -54,6 +54,10 @@ Edit all Makefiles in all directories and adjust CXX. Issue make
 **Running:**
 
 Check the I2C-2 overlay at /boot/uEnv.txt is loaded.
+
+(BB-I2C2-00A0.dtbo) Fast refer to 100 kHz I2C.
+
+**Choose this if the hardware suppor**
 (BB-I2C2-FAST-00A0.dtbo) Fast refer to 400 kHz I2C.
 
 run mstest
