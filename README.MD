@@ -1,5 +1,3 @@
-PORTING IN PROGRESS
-
 MotionSensorExample
 ===================
 
@@ -49,16 +47,16 @@ On BBB, edit MotionSensor/Makefile and adjust CXX_OPTS to specify your board
 
 **Cross compiling:**
 
-~~Edit all Makefiles in all directories and adjust CXX. Issue make~~
-
-Edit only the main Makefile and adjust CXX. Issue make
+Edit all Makefiles in all directories and adjust CXX. Issue make
 
 
 
 **Running:**
 
-  HOW TO LOAD I2C !!! CHANGE !!! FOR OVERLAY AT UENV.TXT
-  run mstest
+Check the I2C-2 overlay at /boot/uEnv.txt is loaded.
+(BB-I2C2-FAST-00A0.dtbo) Fast refer to 400 kHz I2C.
+
+run mstest
   
 *Output Example 1:*
 
