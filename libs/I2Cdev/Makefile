@@ -1,6 +1,6 @@
-#CXX=g++
+CXX=arm-linux-gnueabihf-g++-4.8 -std=c++11
 AR=ar
-#CXXCFLAGS=-Wall -g -O2
+CXXCFLAGS=-Wall -g -O2
 CXX_OPTS=-c
 LDFLAGS= -lm -lrt
 

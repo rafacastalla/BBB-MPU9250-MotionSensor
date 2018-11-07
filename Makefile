@@ -1,6 +1,6 @@
-CXX=g++
-CXXFLAGS= -Wall -g -O2
-CXX_OPTS= -Wall -g -O2
+CXX=arm-linux-gnueabihf-g++-4.8
+CXXFLAGS= -Wall -g -O2 -std=c++11
+CXX_OPTS= -Wall -g -O2 -std=c++11
 
 PROG=mstest
 
@@ -17,10 +17,10 @@ all: $(PROG).o
 $(PROG).o: MotionSensor/libMotionSensor.a libs/libI2Cdev.a
 
 MotionSensor/libMotionSensor.a:
-	$(MAKE) -C MotionSensor/ CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
+	$(MAKE) -C MotionSensor/ 
 
 libs/libI2Cdev.a:
-	$(MAKE) -C libs/I2Cdev CXX=$(CXX) CXXFLAGS=$(CXXFLAGS)
+	$(MAKE) -C libs/I2Cdev 
 
 clean:
 	cd MotionSensor && $(MAKE) clean

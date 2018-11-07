@@ -504,18 +504,19 @@ const struct gyro_reg_s reg =
 	.bank_sel       = 0x6D,
 	.mem_start_addr = 0x6E,
 	.prgm_start_h   = 0x70
-#ifdef AK89xx_SECONDARY
-	,.raw_compass   = 0x49,
-	.s0_addr        = 0x25,
-	.s0_reg         = 0x26,
-	.s0_ctrl        = 0x27,
-	.s1_addr        = 0x28,
-	.s1_reg         = 0x29,
-	.s1_ctrl        = 0x2A,
-	.s4_ctrl        = 0x34,
-	.s0_do          = 0x63,
-	.s1_do          = 0x64,
-	.i2c_delay_ctrl = 0x67
+#if defined AK89xx_SECONDARY
+	,.s0_addr = 0x25,
+	.s0_reg = 0x26,
+	.s0_ctrl = 0x27,
+	.s1_addr = 0x28,
+	.s1_reg = 0x29,
+	.s1_ctrl = 0x2A,
+	.s4_ctrl = 0x34, 
+	.s0_do = 0x63,
+	.s1_do = 0x64,
+	.i2c_delay_ctrl = 0x67,
+	.raw_compass = 0x49,
+	.yg_offs_tc = 0
 #endif
 };
 const struct hw_s hw =
@@ -646,7 +647,7 @@ uint8_t mpu_read_reg(uint8_t reg, uint8_t *data)
 */
 uint8_t mpu_close(void)
 {
-	if(i2c_close!=0) return 1;
+	if(i2c_close()!=0) return 1;
 	return 0;
 }
 
@@ -669,6 +670,7 @@ uint8_t mpu_init(struct int_param_s *int_param)
 	
 	if(i2c_init()!=0) return 1;
 
+	
 	/* Reset device. */
 	data[0] = BIT_RESET;
 	if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 1, data))
@@ -728,7 +730,9 @@ uint8_t mpu_init(struct int_param_s *int_param)
 			st.chip_cfg.accel_half = 0;
 	}
 #elif defined MPU6500
-#define MPU6500_MEM_REV_ADDR    (0x17)
+
+	/*
+	#define MPU6500_MEM_REV_ADDR    (0x17)
 	if (mpu_read_mem(MPU6500_MEM_REV_ADDR, 1, &rev))
 		return 1;
 	if (rev == 0x1)
@@ -740,6 +744,8 @@ uint8_t mpu_init(struct int_param_s *int_param)
 #endif
 		return 1;
 	}
+	*/
+	st.chip_cfg.accel_half = 0;
 
 	/* MPU6500 shares 4kB of memory between the DMP and the FIFO. Since the
 	 * first 3kB are needed by the DMP, we'll use the last 1kB for the FIFO.
