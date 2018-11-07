@@ -53,19 +53,99 @@ Edit all Makefiles in all directories and adjust CXX. Issue make
 
 **Running:**
 
-Check the I2C-2 overlay at /boot/uEnv.txt is loaded.
-
-(BB-I2C2-00A0.dtbo) Fast refer to 100 kHz I2C.
-
-**Choose this if the hardware suppor**
-(BB-I2C2-FAST-00A0.dtbo) Fast refer to 400 kHz I2C.
-
 run mstest
   
 In this example, read a mpu9250 with a Beagle Bone Black with dmp at 200Hz
   
 *Output Example 1:*
 
+Initializing MPU...
+
+Initializing compass...
+
+Initializing is done...
+
+Setting MPU sensors...
+
+Setting GYRO sensitivity...
+
+Setting ACCEL sensitivity...
+
+Powering up MPU...
+
+MPU6050 connection successful
+
+Setting MPU fifo...
+
+Loading DMP firmware...
+
+Activating DMP...
+
+Configuring DMP...
+
+Setting DMP fifo rate...
+
+Resetting fifo queue...
+
+Checking... FIFO count: 28
+
+FIFO count: 56
+
+FIFO count: 84
+
+FIFO count: 84
+
+FIFO count: 112
+
+FIFO count: 140
+
+FIFO count: 168
+
+Done.
+
+FIFO count: 168
+
+yaw = -0.1	pitch = -0.4	roll = 0.5	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 196
+
+yaw = -0.1	pitch = -0.4	roll = 0.5	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 224
+
+yaw = -0.1	pitch = -0.4	roll = 0.4	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 252
+
+yaw = -0.1	pitch = -0.5	roll = 0.4	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 282
+
+FIFO count: 28
+
+yaw = -0.2	pitch = -1.0	roll = -0.2	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 28
+
+yaw = -0.2	pitch = -0.9	roll = -0.3	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 56
+
+yaw = -0.2	pitch = -0.9	roll = -0.4	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 84
+
+yaw = -0.3	pitch = -0.9	roll = -0.5	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 112
+
+yaw = -0.3	pitch = -0.9	roll = -0.6	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 140
+
+yaw = -0.3	pitch = -0.9	roll = -0.6	temperature = 38.1	compass = 0.0, 0.0, 0.0
+
+FIFO count: 168
 
 
 
